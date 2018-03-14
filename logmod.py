@@ -27,7 +27,8 @@ logging.config.dictConfig({
     }
 })
 
-#las sig 2 lineas estan tienen el fin de imprimir informacion de depuracion
-#en especifico, el mensaje soap por ser enviado
-#node = client.create_message(client.service, 'getRecord', ipRecord=signo, user=user)
-#print(etree.tostring(node, pretty_print=True).decode("UTF-8"))
+def imprimirMensajeSOAP(client, metodo, ipRecord, user="ecu_user"):
+    #las sig 2 lineas estan tienen el fin de imprimir informacion de depuracion
+    #en especifico, el mensaje soap por ser enviado
+    node = client.create_message(client.service, metodo, ipRecord=ipRecord, user=user)
+    print(etree.tostring(node, pretty_print=True).decode("UTF-8"))

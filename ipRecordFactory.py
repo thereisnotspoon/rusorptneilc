@@ -37,19 +37,21 @@ def construirSignoDistintivo(signo):
 #relaciona una patente de diseño con sus prioridades
 #retorna el conjunto de datos como un solo diccionario
 def construirPatenteDisenio(patenteDisenio):
+    patenteDisenio = agregarFileData(patenteDisenio)
     patenteDisenio = agregarPrioridades(patenteDisenio) 
     return patenteDisenio
 
 #relaciona una patente de invencion con sus prioridades
 #retorna el conjunto de datos como un solo diccionario
 def construirPatenteInvencion(patenteInvencion):
+    patenteInvencion = agregarFileData(patenteInvencion)
     patenteInvencion = agregarPrioridades(patenteInvencion) 
     return patenteInvencion
     
 #retorna un diccionario que contiene datos tanto de un ipRecord
 #como de sus FileData asociados
 def agregarFileData(ipRecord):
-    filedata = dbconn.consultarFileData(ipRecord["iprecordid"])
+    filedata = dbconn.consultarFileData(ipRecord["ip_record_id"])
     ipRecord = dict(ipRecord)
     ipRecord["filedata"] = []
     for fd in filedata:
@@ -60,7 +62,7 @@ def agregarFileData(ipRecord):
 #retorna un diccionario que contiene datos tanto de un ipRecord
 #como de sus clases de niza asociadas
 def agregarNizas(ipRecord):
-    niceclasses = dbconn.consultarNizas(ipRecord["iprecordid"])
+    niceclasses = dbconn.consultarNizas(ipRecord["ip_record_id"])
     ipRecord = dict(ipRecord)
     ipRecord["niceclasses"] = []
     for nc in niceclasses:
@@ -71,7 +73,7 @@ def agregarNizas(ipRecord):
 #retorna un diccionario que contiene datos tanto de un ipRecord
 #como de sus prioridades asociadas
 def agregarPrioridades(ipRecord):
-    prioridades = dbconn.consultarPrioridades(ipRecord["iprecordid"])
+    prioridades = dbconn.consultarPrioridades(ipRecord["ip_record_id"])
     ipRecord = dict(ipRecord)
     ipRecord["prioridades"] = []
     for pr in prioridades:
@@ -80,7 +82,7 @@ def agregarPrioridades(ipRecord):
     return ipRecord
 
 def main():
-    signs = obtenerPatentesInvencion()
+    signs = obtenerSignosDistintivos()
     
     for sign in signs:
         print(sign, "\n\n")

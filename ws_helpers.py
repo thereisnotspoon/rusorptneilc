@@ -7,7 +7,7 @@ from zeep import Client
 from zeep.transports import Transport
 
 import ipRecordFactory
-import logconf
+import logmod
 import sslcontext
 
 
@@ -34,6 +34,12 @@ def obtenerClienteWS():
         )
 
         return client
+
+def obtenerTipo(tipo):
+    """ Recibe como parámetro una cadena de texto y devuelve una
+        estructura de datos del tipo de IPRecord = tipo 
+    """
+    pass
     
 
 def enviarSignos():

@@ -46,7 +46,8 @@ def consultarNizas(iprecordid):
     conn, cur = getDictCursor()
     sql = """
             SELECT 
-                activity
+                activity,
+                classnumber as \"niceClass\" 
             FROM 
                 nice_class 
                 JOIN distinctive_sign_nice_class USING (nice_class_id)
@@ -67,7 +68,7 @@ def consultarPrioridades(iprecordid):
             SELECT
                 prioritynumber as \"priorityNumber\", 
                 prioritydate as \"priorityDate\", 
-                prioritycountryid as \"priorityCountryId\",
+                prioritycountryid as \"priorityCountryId\"
 	    FROM
 	        priority
 	        JOIN patent_priority USING (priority_id)
@@ -136,7 +137,7 @@ def main():
     
     filas = consultarPrioridades(2)
     for fila in filas:
-        print(fila["prioritydate"])
+        print(fila["priorityDate"])
     
 
 if __name__ == "__main__":
